@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import io from "socket.io-client";
+
 export interface User {
 	gender: string;
 	name: {
@@ -63,4 +66,28 @@ export function getBadge(user: User) {
 		: user.dob.age > 45
 		? ["Green Innovator", "3.jpeg"]
 		: ["Environmental Steward", "4.png"];
+}
+
+export const EVENTS = {
+	SCAN: "scan",
+};
+
+export function useSocket(cb: (data: {}) => void) {
+	useEffect(() => {
+		const socket = io();
+
+		socket.on("connect", () => {
+			console.log("connected");
+		});
+
+		console.log(socket);
+
+		socket.on(EVENTS.SCAN, (message) => {
+			cb({ message });
+		});
+
+		return () => {
+			socket.disconnect();
+		};
+	}, []);
 }

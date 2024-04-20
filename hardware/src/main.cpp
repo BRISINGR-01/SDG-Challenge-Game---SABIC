@@ -16,8 +16,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 const char *ssid = "Alex's Galaxy S21 FE 5G"; // The SSID (name) of the Wi-Fi network you want to connect to
 const char *password = "rbmj4667";
 
-// Your Domain name with URL path or IP address with path
-String serverName = "http://google.com";
+String serverName = "http://192.168.1.113/api/notify?val=";
 
 // the following variables are unsigned longs because the time, measured in
 // milliseconds, will quickly become a bigger number than can be stored in an int.
@@ -30,9 +29,8 @@ unsigned long timerDelay = 5000;
 void setup()
 {
   Serial.begin(9600);
-  SPI.begin(); // Init SPI bus
+  SPI.begin();
 
-  // Init MFRC522
   mfrc522.PCD_Init();
   Serial.println("Approach your reader card...");
   Serial.println();
