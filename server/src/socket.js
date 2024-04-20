@@ -1,6 +1,7 @@
 import { Server } from "socket.io";
 
 export default async (req, res) => {
+	console.error("hi");
 	if (res.socket.server.io) {
 		console.log("Socket is already running");
 	} else {

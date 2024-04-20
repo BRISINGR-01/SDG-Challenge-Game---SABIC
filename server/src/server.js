@@ -23,6 +23,7 @@ app.prepare().then(() => {
 		}, 1000);
 	});
 
+	console.error("hi");
 	httpServer
 		.once("error", (err) => {
 			console.error(err);
