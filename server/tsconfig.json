@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/pages/socket.io.js"
+    "src/socket.io.jso.js"
   ],
   "exclude": [
     "node_modules"

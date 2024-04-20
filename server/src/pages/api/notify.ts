@@ -1,9 +1,10 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 import io from "socket.io-client";
 const socket = io("http://localhost:3000");
 
-export async function POST(req, res) {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
 	try {
 		// do something you need to do in the backend
 		// (like database operations, etc.)
@@ -15,4 +16,4 @@ export async function POST(req, res) {
 		console.error("Error:", error);
 		return NextResponse.json({ error: error }, { status: 200 });
 	}
-}
+};

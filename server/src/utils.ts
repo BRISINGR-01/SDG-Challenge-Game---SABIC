@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import io from "socket.io-client";
 
@@ -81,6 +83,7 @@ export function useSocket(cb: (data: {}) => void) {
 		});
 
 		console.log(socket);
+		socket.onAny(console.log);
 
 		socket.on(EVENTS.SCAN, (message) => {
 			cb({ message });

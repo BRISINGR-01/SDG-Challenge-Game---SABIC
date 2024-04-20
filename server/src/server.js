@@ -15,7 +15,12 @@ app.prepare().then(() => {
 	const io = new Server(httpServer);
 
 	io.on("connection", (socket) => {
+		console.log("connection");
 		// ...
+		setTimeout(() => {
+			console.log("data");
+			io.emit("scan", "hi");
+		}, 1000);
 	});
 
 	httpServer

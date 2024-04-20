@@ -1,4 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+export default {
+	webpack(config) {
+		config.resolve.fallback = {
+			// if you miss it, all the other options in fallback, specified
+			// by next.js will be dropped.
+			...config.resolve.fallback,
+		};
 
-export default nextConfig;
+		return config;
+	},
+};
