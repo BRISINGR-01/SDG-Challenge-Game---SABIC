@@ -19,7 +19,7 @@ app.prepare().then(() => {
 		// ...
 		setTimeout(() => {
 			console.log("data");
-			io.emit("scan", "hi");
+			io.emit("scan", "0");
 		}, 1000);
 	});
 
