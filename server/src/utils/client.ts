@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect } from "react";
 import io from "socket.io-client";
 
@@ -92,5 +90,35 @@ export function useSocket(cb: (data: {}) => void) {
 		return () => {
 			socket.disconnect();
 		};
+	}, []);
+}
+
+export function useWS() {
+	useEffect(() => {
+		const socket = new WebSocket("ws://" + window.location.host + "/api/websocket");
+		console.log(socket);
+
+		socket.addEventListener("open", (event) => {
+			console.log("WebSocket connection opened");
+		});
+
+		socket.addEventListener("message", (event) => {
+			const message = event.data;
+			console.log(message);
+
+			// Handle incoming messages from the server
+		});
+
+		socket.addEventListener("close", (event) => {
+			if (event.wasClean) {
+				console.log(`WebSocket connection closed cleanly, code=${event.code}, reason=${event.reason}`);
+			} else {
+				console.error("WebSocket connection abruptly closed");
+			}
+		});
+
+		socket.addEventListener("error", (error) => {
+			console.error("WebSocket error:", error);
+		});
 	}, []);
 }

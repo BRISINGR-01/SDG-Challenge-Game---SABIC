@@ -1,5 +1,5 @@
-import { getBadge, type User as UserType } from "@/utils";
 import { Avatar, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, User } from "@nextui-org/react";
+import { getBadge, type User as UserType } from "../utils/client";
 
 export default function Leaderboard({ data }: { data: UserType[] }) {
 	const users = [];
