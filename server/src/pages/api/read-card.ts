@@ -2,7 +2,7 @@ import { createClient } from "@/src/utils/supabase/client";
 import { CARD_READER_CHANNEL, Tables } from "@/src/utils/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
 	const val = req.query.val;
 
 	console.log(val);
@@ -14,13 +14,13 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
 	let m = "err: ";
 	const supabase = createClient();
-	supabase
+	await supabase
 		.from(Tables.CardRead)
 		.insert({ card_id: val })
 		.then((res) => (m += res.error));
 
 	const channel = supabase.channel(CARD_READER_CHANNEL);
-	channel.send({ type: "broadcast", event: CARD_READER_CHANNEL, payload: { cardId: val } }).then((res) => {
+	await channel.send({ type: "broadcast", event: CARD_READER_CHANNEL, payload: { cardId: val } }).then((res) => {
 		m += " " + res;
 	});
 
