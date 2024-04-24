@@ -4,9 +4,15 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 	const val = req.query.val;
-	res.end();
 
-	if (!val) return;
+	if (!val) {
+		res.status(400).send("No value was provided!");
+		return res.end();
+	}
+	console.log(val);
+
+	res.status(200).send("hi");
+	res.end();
 
 	const supabase = createClient();
 	// supabase.from(Tables.CardRead).insert({ card_id: val });
