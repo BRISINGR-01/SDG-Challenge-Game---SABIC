@@ -32,6 +32,9 @@ Here is an overview of the costs. The company (SABIC) needs them to determine wh
 - Micro B cable - ~2€
 Total - ~22€
 
+![hardware](https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC/blob/main/images/Pasted%20image%2020240420155729.png)
+![game](https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC/blob/main/images/Screenshot%20from%202024-04-24%2023-40-02.png)
+
 # NL
 ### Appendix
 RFID - Radio Frequency IDentification. Een hardwarestuk dat kaarten kan onderscheiden.
