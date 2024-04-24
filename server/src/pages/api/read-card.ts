@@ -12,12 +12,18 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 	}
 	console.log(val);
 
-	res.status(200).send("hi");
-	res.end();
-
+	let m = "err: ";
 	const supabase = createClient();
-	supabase.from(Tables.CardRead).insert({ card_id: val });
+	supabase
+		.from(Tables.CardRead)
+		.insert({ card_id: val })
+		.then((res) => (m += res.error));
 
 	const channel = supabase.channel(CARD_READER_CHANNEL);
-	channel.send({ type: "broadcast", event: CARD_READER_CHANNEL, payload: { cardId: val } });
+	channel.send({ type: "broadcast", event: CARD_READER_CHANNEL, payload: { cardId: val } }).then((res) => {
+		m += " " + res;
+	});
+
+	res.status(200).send(m);
+	res.end();
 };
