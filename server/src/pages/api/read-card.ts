@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export default (req: NextApiRequest, res: NextApiResponse) => {
 	const val = req.query.val;
 
+	console.log(val);
 	if (!val) {
 		res.status(400).send("No value was provided!");
 		return res.end();
