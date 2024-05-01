@@ -1,91 +1,51 @@
 import { createClient } from "@/src/utils/supabase/client";
-import type { User } from "@/src/utils/utils";
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { CARD_READER_CHANNEL } from "../utils/utils";
-import Leaderboard from "./Leaderboard";
-
-let timeout: NodeJS.Timeout | null;
+import type { Tables } from "../utils/supabase/types";
+import { CHANNEL } from "../utils/utils";
+import Container from "./Container";
+import Display from "./Display";
+import SignUpDisplay from "./SignUpDisplay";
 
 export default function Home() {
-	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [data, setData] = useState<User[]>([]);
-	const [scanned, setScanned] = useState("");
+	const [cardToSignUp, setCardToSignUp] = useState<string | null>(null);
+	const [userData, setUserData] = useState<Tables<"user"> | null>(null);
+
 	useEffect(() => {
 		const supabase = createClient();
-		supabase.from("card_read").select().then(console.log);
 
-		const channel = supabase.channel(CARD_READER_CHANNEL);
+		supabase
+			.channel(CHANNEL)
+			.on("postgres_changes", { event: "INSERT", schema: "public", table: "card_read" }, async (event) => {
+				const card = event.new as Tables<"card_read">;
 
-		channel
-			.on("broadcast", { event: CARD_READER_CHANNEL }, (event) => {
-				if (timeout) {
-					onClose();
-					clearTimeout(timeout);
-					timeout = null;
-					setScanned("");
-					timeout = null;
-					setTimeout(() => {
-						setScanned(event.payload.cardId);
-					}, 200);
+				const { data: users } = await supabase.from("user").select().eq("card", card.card_id);
+
+				if (!users || users?.length === 0) {
+					setCardToSignUp(card.card_id);
 				} else {
-					setScanned(event.payload.cardId);
+					setUserData(users[0]);
 				}
 			})
-			.subscribe();
+			.on("postgres_changes", { event: "INSERT", schema: "public", table: "user" }, async (event) => {
+				const user = event.new as Tables<"user">;
 
-		fetch("/data.json")
-			.then((res) => res.json())
-			.then(setData);
+				setUserData(user);
+				setCardToSignUp(null);
+			})
+			.subscribe();
 	}, []);
 
-	useEffect(() => {
-		if (!scanned) return;
-		if (timeout) {
-			onClose();
-			clearTimeout(timeout);
-		}
-		onOpen();
-		timeout = setTimeout(() => {
-			onClose();
-			setScanned("");
-			timeout = null;
-		}, 2000);
-	}, [scanned]);
+	if (cardToSignUp) return <SignUpDisplay cardID={cardToSignUp} />;
+
+	if (userData) return <Display clear={() => setUserData(null)} user={userData} />;
 
 	return (
-		<>
-			<Modal
-				isOpen={isOpen}
-				// backdrop="transparent"
-				placement="center"
-				motionProps={{
-					variants: {
-						enter: {
-							y: 0,
-							opacity: 1,
-							transition: {
-								duration: 0.05,
-								ease: "easeOut",
-							},
-						},
-						exit: {
-							y: -20,
-							opacity: 0,
-							transition: {
-								duration: 0.05,
-								ease: "easeIn",
-							},
-						},
-					},
-				}}
-			>
-				<ModalContent>
-					<ModalHeader className="flex flex-col gap-1">A card was scanned</ModalHeader>
-					<ModalBody>Card ID: {scanned}</ModalBody>
-				</ModalContent>
-			</Modal>
-			<Leaderboard data={data} />
-		</>
+		<Container style={{ width: 1500 }}>
+			<span style={{ fontSize: 40, color: "#939598" }}>Sustainability & Innovation</span>
+			<br />
+			<span style={{ fontSize: 60, fontWeight: "bold", textTransform: "uppercase", width: "90vw" }}>
+				Scan badge to connect
+			</span>
+		</Container>
 	);
 }

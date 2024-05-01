@@ -18,6 +18,24 @@ export type Database = {
 				};
 				Relationships: [];
 			};
+			user: {
+				Row: {
+					card: string;
+					id: string;
+					name: string;
+				};
+				Insert: {
+					card: string;
+					id?: string;
+					name: string;
+				};
+				Update: {
+					card?: string;
+					id?: string;
+					name?: string;
+				};
+				Relationships: [];
+			};
 		};
 		Views: {
 			[_ in never]: never;

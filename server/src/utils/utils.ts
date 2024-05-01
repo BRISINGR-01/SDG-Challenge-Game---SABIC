@@ -1,7 +1,13 @@
-export const CARD_READER_CHANNEL = "card-reader-channel";
-export const Tables = {
-	CardRead: "card_read",
+export const CHANNEL = "db-changes";
+
+export const Events = {
+	CardRead: "card-read",
+	SignUp: "sign-up",
 };
+
+export type Payload<T extends string> = { [key in T]: string };
+export type CardReadPayload = Payload<"cardId">;
+export type SignUpPayload = Payload<"userId">;
 
 export interface User {
 	gender: string;
