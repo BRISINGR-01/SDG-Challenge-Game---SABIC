@@ -38,3 +38,11 @@ next-env.d.ts
 .pio
 
 Session.vim
+
+# Supabase
+.branches
+.temp
+.env
+
+secrets.h
+sdg-sabic.code-workspace

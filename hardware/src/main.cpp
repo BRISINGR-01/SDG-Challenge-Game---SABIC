@@ -1,3 +1,4 @@
+#include <secrets.h>
 #include <MFRC522.h> //library responsible for communicating with the module RFID-RC522
 #include <SPI.h>     //library responsible for communicating of SPI bus
 #include <WiFi.h>
@@ -6,39 +7,37 @@
 #define RST_PIN 22
 #define SIZE_BUFFER 18
 #define MAX_SIZE_BLOCK 16
-// used in authentication
+
 MFRC522::MIFARE_Key key;
-// authentication return status code
 MFRC522::StatusCode status;
-// Defined pins to module RC522
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-const char *ssid = "Alex's Galaxy S21 FE 5G"; // The SSID (name) of the Wi-Fi network you want to connect to
-const char *password = "rbmj4667";
+const char *wifiName = WIFI_NAME;
+const char *wifiPassword = WIFI_PASSWORD;
+const char *supabaseURL = SUPABASE_URL;
+String supabaseAPIToken = SUPABASE_API_TOKEN;
 
-String serverName = "https://sdg-challenge-game-sabic.vercel.app/api/read-card?val=";
-
-// the following variables are unsigned longs because the time, measured in
-// milliseconds, will quickly become a bigger number than can be stored in an int.
-unsigned long lastTime = 0;
-unsigned long timerDelay = 5000;
+String url = "https://$supabaseURL.supabase.co/rest/v1/card_read";
+WiFiClient wifi;
+HTTPClient client;
 
 void setup()
 {
+  url.replace("$supabaseURL", supabaseURL);
+
   Serial.begin(9600);
   SPI.begin();
 
   mfrc522.PCD_Init();
 
-  WiFi.begin(ssid, password);
+  WiFi.begin("Alex's Galaxy S21 FE 5G", "rbmj4667");
   Serial.println("Connecting");
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("");
-  Serial.print("Connected to WiFi");
+  Serial.println("Connected to WiFi");
 }
 
 String readingData()
@@ -96,10 +95,26 @@ String readingData()
   return cardId;
 }
 
+void sendData(String cardId)
+{
+  String postData = "{ \"card_id\": \"$cardID\" }";
+  postData.replace("$cardID", cardId);
+  Serial.println(postData);
+
+  client.begin(url);
+
+  client.addHeader("Content-Type", "application/json");
+  client.addHeader("apikey", supabaseAPIToken);
+  client.addHeader("Authorization", "Bearer " + supabaseAPIToken);
+
+  Serial.println(client.POST(postData));
+  Serial.println(client.getString());
+
+  client.end();
+}
+
 void loop()
 {
-  // Aguarda a aproximacao do cartao
-  // waiting the card approach
   if (!mfrc522.PICC_IsNewCardPresent())
   {
     return;
@@ -126,36 +141,7 @@ void loop()
     return;
   }
 
-  HTTPClient http;
-
   Serial.println(cardId);
-  Serial.println((serverName + cardId).c_str());
 
-  // Your Domain name with URL path or IP address with path
-  http.begin((serverName + cardId).c_str());
-
-  // If you need Node-RED/server authentication, insert user and password below
-  // http.setAuthorization("REPLACE_WITH_SERVER_USERNAME", "REPLACE_WITH_SERVER_PASSWORD");
-
-  // Send HTTP GET request
-  int httpResponseCode = http.GET();
-
-  if (httpResponseCode > 0)
-  {
-    if (httpResponseCode != 200)
-    {
-      Serial.print("HTTP Error Response code: ");
-      Serial.println(httpResponseCode);
-      Serial.println(serverName + cardId);
-      String payload = http.getString();
-      Serial.println(payload);
-    }
-  }
-  else
-  {
-    Serial.print("Error code: ");
-    Serial.println(httpResponseCode);
-  }
-  // Free resources
-  http.end();
+  sendData(cardId);
 }
