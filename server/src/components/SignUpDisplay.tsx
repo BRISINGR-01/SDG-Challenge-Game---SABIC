@@ -3,9 +3,9 @@ import Container from "./Container";
 import SignUp from "./SignUp";
 import Spacer from "./Spacer";
 
-export default function SignUpDisplay(props: { cardID: string }) {
+export default function SignUpDisplay(props: { cardID: string; goBack: () => void }) {
 	return (
-		<Container className="flex flex-row gap-	44">
+		<Container goBack={props.goBack} className="flex flex-row gap-	44">
 			<div className="flex flex-col gap-3">
 				<span style={{ fontSize: "2em" }}>SCAN</span>
 				<QRCode

@@ -1,9 +1,11 @@
+import { Button } from "@nextui-org/react";
 import React from "react";
 
 export default function Container(props: {
 	children?: React.JSX.Element | React.JSX.Element[];
 	style?: React.CSSProperties;
 	className?: string;
+	goBack: null | (() => void);
 }) {
 	return (
 		<div
@@ -15,6 +17,13 @@ export default function Container(props: {
 				overflow: "hidden",
 			}}
 		>
+			{props.goBack && (
+				<div style={{ position: "absolute", bottom: 0, right: 0, transform: "translate(-100%, -100%)" }}>
+					<Button variant="ghost" isIconOnly onClick={props.goBack}>
+						<img style={{ padding: "6px" }} src="/back.svg"></img>
+					</Button>
+				</div>
+			)}
 			<div
 				style={{
 					position: "absolute",

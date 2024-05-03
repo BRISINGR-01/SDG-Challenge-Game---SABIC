@@ -9,6 +9,10 @@ import SignUpDisplay from "./SignUpDisplay";
 export default function Home() {
 	const [cardToSignUp, setCardToSignUp] = useState<string | null>(null);
 	const [userData, setUserData] = useState<Tables<"user"> | null>(null);
+	const goBack = () => {
+		setUserData(null);
+		setCardToSignUp(null);
+	};
 
 	useEffect(() => {
 		const supabase = createClient();
@@ -22,7 +26,9 @@ export default function Home() {
 
 				if (!users || users?.length === 0) {
 					setCardToSignUp(card.card_id);
+					setUserData(null);
 				} else {
+					setCardToSignUp(null);
 					setUserData(users[0]);
 				}
 			})
@@ -35,12 +41,12 @@ export default function Home() {
 			.subscribe();
 	}, []);
 
-	if (cardToSignUp) return <SignUpDisplay cardID={cardToSignUp} />;
+	if (cardToSignUp) return <SignUpDisplay goBack={goBack} cardID={cardToSignUp} />;
 
-	if (userData) return <Display clear={() => setUserData(null)} user={userData} />;
+	if (userData) return <Display goBack={goBack} user={userData} />;
 
 	return (
-		<Container style={{ width: 1500 }}>
+		<Container goBack={null} style={{ width: 1500 }}>
 			<span style={{ fontSize: 40, color: "#939598" }}>Sustainability & Innovation</span>
 			<br />
 			<span style={{ fontSize: 60, fontWeight: "bold", textTransform: "uppercase", width: "90vw" }}>

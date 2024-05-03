@@ -10,5 +10,9 @@ export default function Page() {
 
 	if (Array.isArray(cardId)) cardId = cardId[0];
 
-	return <SignUp cardID={cardId!} />;
+	return (
+		// <RootLayout>
+		<SignUp cardID={cardId!} />
+		// {/* </RootLayout> */}
+	);
 }
