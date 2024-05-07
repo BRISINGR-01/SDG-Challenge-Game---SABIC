@@ -4,6 +4,7 @@ import type { Tables } from "../utils/supabase/types";
 import { CHANNEL } from "../utils/utils";
 import Container from "./Container";
 import Display from "./Display";
+import GreetingPage from "./GreetingPage";
 import SignUpDisplay from "./SignUpDisplay";
 
 export default function Home() {
@@ -20,6 +21,8 @@ export default function Home() {
 		supabase
 			.channel(CHANNEL)
 			.on("postgres_changes", { event: "INSERT", schema: "public", table: "card_read" }, async (event) => {
+				const audio = new Audio("/bell.wav");
+				audio.play();
 				const card = event.new as Tables<"card_read">;
 
 				const { data: users } = await supabase.from("user").select().eq("card", card.card_id);
@@ -41,17 +44,15 @@ export default function Home() {
 			.subscribe();
 	}, []);
 
-	if (cardToSignUp) return <SignUpDisplay goBack={goBack} cardID={cardToSignUp} />;
-
-	if (userData) return <Display goBack={goBack} user={userData} />;
-
 	return (
-		<Container goBack={null} style={{ width: 1500 }}>
-			<span style={{ fontSize: 40, color: "#939598" }}>Sustainability & Innovation</span>
-			<br />
-			<span style={{ fontSize: 60, fontWeight: "bold", textTransform: "uppercase", width: "90vw" }}>
-				Scan badge to connect
-			</span>
+		<Container goBack={goBack}>
+			{cardToSignUp ? (
+				<SignUpDisplay cardID={cardToSignUp} />
+			) : userData ? (
+				<Display user={userData} />
+			) : (
+				<GreetingPage />
+			)}
 		</Container>
 	);
 }

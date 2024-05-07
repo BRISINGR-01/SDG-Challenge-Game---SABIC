@@ -1,11 +1,10 @@
 import { QRCode } from "react-qrcode-logo";
-import Container from "./Container";
 import SignUp from "./SignUp";
 import Spacer from "./Spacer";
 
-export default function SignUpDisplay(props: { cardID: string; goBack: () => void }) {
+export default function SignUpDisplay(props: { cardID: string }) {
 	return (
-		<Container goBack={props.goBack} className="flex flex-row gap-	44">
+		<div className="flex flex-row" style={{ padding: "5em" }}>
 			<div className="flex flex-col gap-3">
 				<span style={{ fontSize: "2em" }}>SCAN</span>
 				<QRCode
@@ -14,7 +13,11 @@ export default function SignUpDisplay(props: { cardID: string; goBack: () => voi
 					quietZone={10}
 					bgColor="#FFFFFF"
 					fgColor="#009FE3"
-					logoWidth={40}
+					logoHeight={30}
+					logoWidth={50}
+					size={200}
+					logoPadding={6}
+					eyeRadius={1}
 					qrStyle="squares"
 				></QRCode>
 			</div>
@@ -25,6 +28,6 @@ export default function SignUpDisplay(props: { cardID: string; goBack: () => voi
 			<div className="flex flex-col">
 				<SignUp cardID={props.cardID} />
 			</div>
-		</Container>
+		</div>
 	);
 }

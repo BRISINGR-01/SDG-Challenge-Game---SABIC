@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import { Button, Image } from "@nextui-org/react";
 import React from "react";
 
 export default function Container(props: {
@@ -18,12 +18,15 @@ export default function Container(props: {
 			}}
 		>
 			{props.goBack && (
-				<div style={{ position: "absolute", bottom: 0, right: 0, transform: "translate(-100%, -100%)" }}>
-					<Button variant="ghost" isIconOnly onClick={props.goBack}>
-						<img style={{ padding: "6px" }} src="/back.svg"></img>
+				<div style={{ position: "absolute", top: 0, right: 0, transform: "translate(-100%, 2em)", zIndex: 100 }}>
+					<Button size="lg" variant="faded" isIconOnly onClick={props.goBack}>
+						<img style={{ padding: "8px" }} src="/back.svg"></img>
 					</Button>
 				</div>
 			)}
+			<div style={{ position: "absolute", bottom: 0, right: 0, transform: "translate(-100%, -100%)", zIndex: 100 }}>
+				<Image src="/sabic.png"></Image>
+			</div>
 			<div
 				style={{
 					position: "absolute",
@@ -74,11 +77,9 @@ export default function Container(props: {
 				style={{
 					position: "absolute",
 					backgroundColor: "rgba(255,255,255,0.6)",
-					...props.style,
 					top: "50%",
 					left: "50%",
 					transform: "translate(-50%, -50%)",
-					padding: "5em",
 					color: "black",
 					textAlign: "center",
 				}}
