@@ -23,10 +23,10 @@ export default function SignUp(props: { cardID: string }) {
 			style={{ height: "100%" }}
 			onSubmit={(e) => onSubmit.current(e, input)}
 		>
-			<span style={{ fontSize: "2em" }}>TYPE</span>
+			<span style={{ fontSize: "1.5em" }}>TYPE</span>
 			<Input
 				variant="bordered"
-				size="lg"
+				size="sm"
 				color="primary"
 				style={{ width: "max-content" }}
 				placeholder="Enter Name"

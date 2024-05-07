@@ -18,13 +18,13 @@ export default function Container(props: {
 			}}
 		>
 			{props.goBack && (
-				<div style={{ position: "absolute", top: 0, right: 0, transform: "translate(-100%, 2em)", zIndex: 100 }}>
-					<Button size="lg" variant="faded" isIconOnly onClick={props.goBack}>
+				<div style={{ position: "absolute", top: 0, right: 0, transform: "translate(-30%, 30%)", zIndex: 100 }}>
+					<Button size="md" variant="faded" isIconOnly onClick={props.goBack}>
 						<img style={{ padding: "8px" }} src="/back.svg"></img>
 					</Button>
 				</div>
 			)}
-			<div style={{ position: "absolute", bottom: 0, right: 0, transform: "translate(-100%, -100%)", zIndex: 100 }}>
+			<div style={{ position: "absolute", bottom: 0, right: 0, transform: "translate(-30%, -30%)", zIndex: 100 }}>
 				<Image src="/sabic.png"></Image>
 			</div>
 			<div

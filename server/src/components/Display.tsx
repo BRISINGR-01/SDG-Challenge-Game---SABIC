@@ -8,14 +8,14 @@ export default function Display(props: { user: Tables<"user"> }) {
 				display: "flex",
 				backgroundColor: "#EBF8FE",
 				justifyContent: "center",
-				gap: "1em",
+				gap: "15px",
 				alignItems: "center",
 				width: "90vw",
 				height: "80vh",
 			}}
 		>
 			<div style={{ display: "flex", flexDirection: "column" }}>
-				<span style={{ fontSize: "3em" }}>Hi, {props.user.name}</span>
+				<span style={{ fontSize: "1.2em" }}>Hi, {props.user.name}</span>
 				{[
 					["+1", "Good job! another plastic recycled by you!"],
 					["↑7", "places up! Your ranking has advanced!"],
@@ -25,10 +25,10 @@ export default function Display(props: { user: Tables<"user"> }) {
 				].map(([t1, t2]) => (
 					<>
 						<div style={{ display: "flex", gap: "1em" }}>
-							<span style={{ fontWeight: 1000, color: "#009FE3", fontSize: "2.5em", width: "3em", textAlign: "right" }}>
+							<span style={{ fontWeight: 1000, color: "#009FE3", fontSize: "1em", width: "3em", textAlign: "right" }}>
 								{t1}
 							</span>
-							<span style={{ fontSize: "1.5em", textAlign: "left", alignContent: "center", width: "11.5em" }}>
+							<span style={{ fontSize: "0.8em", textAlign: "left", alignContent: "center", width: "11.5em" }}>
 								{t2}
 							</span>
 						</div>
@@ -36,7 +36,7 @@ export default function Display(props: { user: Tables<"user"> }) {
 					</>
 				))}
 			</div>
-			<img src="/Group 32.png" alt="" style={{ height: "25em" }} />
+			<img src="/Group 32.png" alt="" style={{ height: "15em" }} />
 			{/* <div style={{ display: "flex", flexDirection: "column" }}>
 				<Chip style={{ backgroundColor: "#009FE3" }}>
 					<span style={{ color: "white", fontWeight: 1000, textTransform: "uppercase" }}>Company Progress</span>
