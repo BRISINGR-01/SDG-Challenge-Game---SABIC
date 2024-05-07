@@ -45,7 +45,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<Container goBack={goBack}>
+		<Container goBack={cardToSignUp || userData ? goBack : null}>
 			{cardToSignUp ? (
 				<SignUpDisplay cardID={cardToSignUp} />
 			) : userData ? (

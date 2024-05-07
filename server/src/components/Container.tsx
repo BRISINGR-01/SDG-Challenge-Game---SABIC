@@ -82,6 +82,7 @@ export default function Container(props: {
 					transform: "translate(-50%, -50%)",
 					color: "black",
 					textAlign: "center",
+					...props.style,
 				}}
 				className={props.className}
 			>

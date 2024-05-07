@@ -7,16 +7,15 @@ export default function Display(props: { user: Tables<"user"> }) {
 			style={{
 				display: "flex",
 				backgroundColor: "#EBF8FE",
-				width: "80vw",
-				height: "80vh",
 				justifyContent: "space-around",
 				alignItems: "center",
-				padding: "1em",
+				padding: "4em",
 				gap: "1em",
+				width: "max-content",
 			}}
 		>
 			<div style={{ display: "flex", flexDirection: "column" }}>
-				<span style={{ fontSize: "2em" }}>Hi, {props.user.name}</span>
+				<span style={{ fontSize: "3em" }}>Hi, {props.user.name}</span>
 				{[
 					["+1", "Good job! another plastic recycled by you!"],
 					["↑7", "places up! Your ranking has advanced!"],
@@ -26,18 +25,16 @@ export default function Display(props: { user: Tables<"user"> }) {
 				].map(([t1, t2]) => (
 					<>
 						<div style={{ display: "flex", gap: "1em" }}>
-							<span
-								style={{ fontWeight: 1000, color: "#009FE3", fontSize: "1.5em", width: "2.5em", textAlign: "right" }}
-							>
+							<span style={{ fontWeight: 1000, color: "#009FE3", fontSize: "2.5em", width: "3em", textAlign: "right" }}>
 								{t1}
 							</span>
-							<span style={{ fontSize: "1em", textAlign: "left", alignContent: "center" }}>{t2}</span>
+							<span style={{ fontSize: "1.5em", textAlign: "left", alignContent: "center", width: "20em" }}>{t2}</span>
 						</div>
 						<Divider />
 					</>
 				))}
 			</div>
-			<img src="/Group 32.png" alt="" />
+			<img src="/Group 32.png" alt="" style={{ height: "25em" }} />
 			{/* <div style={{ display: "flex", flexDirection: "column" }}>
 				<Chip style={{ backgroundColor: "#009FE3" }}>
 					<span style={{ color: "white", fontWeight: 1000, textTransform: "uppercase" }}>Company Progress</span>
