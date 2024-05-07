@@ -1,5 +1,5 @@
 import { createClient } from "@/src/utils/supabase/client";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import type { Tables } from "../utils/supabase/types";
 import { CHANNEL } from "../utils/utils";
 import Container from "./Container";
@@ -8,6 +8,7 @@ import GreetingPage from "./GreetingPage";
 import SignUpDisplay from "./SignUpDisplay";
 
 export default function Home() {
+	const containerRef = createRef<HTMLDivElement>();
 	const [cardToSignUp, setCardToSignUp] = useState<string | null>(null);
 	const [userData, setUserData] = useState<Tables<"user"> | null>(null);
 	const goBack = () => {
@@ -16,6 +17,10 @@ export default function Home() {
 	};
 
 	useEffect(() => {
+		if (containerRef.current) {
+			containerRef.current.requestFullscreen();
+		}
+
 		const supabase = createClient();
 
 		supabase
@@ -45,14 +50,23 @@ export default function Home() {
 	}, []);
 
 	return (
-		<Container goBack={cardToSignUp || userData ? goBack : null}>
-			{cardToSignUp ? (
-				<SignUpDisplay cardID={cardToSignUp} />
-			) : userData ? (
-				<Display user={userData} />
-			) : (
-				<GreetingPage />
-			)}
-		</Container>
+		<div
+			ref={containerRef}
+			onClick={() => {
+				if (containerRef.current) {
+					containerRef.current.requestFullscreen();
+				}
+			}}
+		>
+			<Container goBack={cardToSignUp || userData ? goBack : null}>
+				{cardToSignUp ? (
+					<SignUpDisplay cardID={cardToSignUp} />
+				) : userData ? (
+					<Display user={userData} />
+				) : (
+					<GreetingPage />
+				)}
+			</Container>
+		</div>
 	);
 }

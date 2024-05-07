@@ -7,11 +7,11 @@ export default function Display(props: { user: Tables<"user"> }) {
 			style={{
 				display: "flex",
 				backgroundColor: "#EBF8FE",
-				justifyContent: "space-around",
-				alignItems: "center",
-				padding: "4em",
+				justifyContent: "center",
 				gap: "1em",
-				width: "max-content",
+				alignItems: "center",
+				width: "90vw",
+				height: "80vh",
 			}}
 		>
 			<div style={{ display: "flex", flexDirection: "column" }}>
@@ -28,7 +28,9 @@ export default function Display(props: { user: Tables<"user"> }) {
 							<span style={{ fontWeight: 1000, color: "#009FE3", fontSize: "2.5em", width: "3em", textAlign: "right" }}>
 								{t1}
 							</span>
-							<span style={{ fontSize: "1.5em", textAlign: "left", alignContent: "center", width: "20em" }}>{t2}</span>
+							<span style={{ fontSize: "1.5em", textAlign: "left", alignContent: "center", width: "11.5em" }}>
+								{t2}
+							</span>
 						</div>
 						<Divider />
 					</>
