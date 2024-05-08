@@ -5,9 +5,10 @@ import { CHANNEL } from "../utils/utils";
 import Container from "./Container";
 import Display from "./Display";
 import GreetingPage from "./GreetingPage";
+import SignUp from "./SignUp";
 import SignUpDisplay from "./SignUpDisplay";
 
-export default function Home() {
+export default function Home(props: { showSignUp: boolean }) {
 	const containerRef = createRef<HTMLDivElement>();
 	const [cardToSignUp, setCardToSignUp] = useState<string | null>(null);
 	const [userData, setUserData] = useState<Tables<"user"> | null>(null);
@@ -55,7 +56,11 @@ export default function Home() {
 			}}
 		>
 			<Container goBack={cardToSignUp || userData ? goBack : null}>
-				{cardToSignUp ? (
+				{props.showSignUp ? (
+					<div style={{ padding: "4em" }}>
+						<SignUp cardID={window.location.href.split("/").at(-1)!} />
+					</div>
+				) : cardToSignUp ? (
 					<SignUpDisplay cardID={cardToSignUp} />
 				) : userData ? (
 					<Display user={userData} />

@@ -1,18 +1,13 @@
 "use client";
 
-import Container from "@/src/components/Container";
+import Home from "@/src/components/Home";
 import { NextUIProvider } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import "../../app/globals.css";
 
 export default function Page() {
-	const [cardId, setCardId] = useState("");
-	useEffect(() => {
-		setCardId(window.location.href.split("/").at(-1)!);
-	});
-
 	return (
 		<NextUIProvider>
-			<Container goBack={null}></Container>
+			<Home showSignUp={true} />;
 		</NextUIProvider>
 	);
 }
