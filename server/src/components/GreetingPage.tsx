@@ -63,7 +63,7 @@ export default function GreetingPage() {
 	});
 
 	return (
-		<div style={{ padding: "1em", height: "80vh", width: "80vw" }}>
+		<div style={{ padding: "1em 2em", height: "80vh", width: "80vw" }}>
 			<span style={{ fontSize: 20, color: "#939598" }}>Sustainability & Innovation</span>
 			<br />
 			<br />

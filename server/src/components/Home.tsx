@@ -17,10 +17,6 @@ export default function Home() {
 	};
 
 	useEffect(() => {
-		if (containerRef.current) {
-			containerRef.current.requestFullscreen();
-		}
-
 		const supabase = createClient();
 
 		supabase

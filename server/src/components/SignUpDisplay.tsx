@@ -9,14 +9,13 @@ export default function SignUpDisplay(props: { cardID: string }) {
 				<span style={{ fontSize: "1.5em" }}>SCAN</span>
 				<QRCode
 					value={window.location.origin + "/sign-up/" + props.cardID}
-					ecLevel="Q"
 					logoImage="http://localhost:3000/sabic.png"
 					quietZone={10}
 					bgColor="#FFFFFF"
 					fgColor="#009FE3"
 					logoHeight={15}
 					logoWidth={30}
-					size={100}
+					size={160}
 					logoPadding={4}
 					eyeRadius={1}
 					qrStyle="squares"
@@ -27,6 +26,8 @@ export default function SignUpDisplay(props: { cardID: string }) {
 				<Spacer></Spacer>
 			</div>
 			<div className="flex flex-col">
+				<span style={{ fontSize: "1.5em" }}>TYPE</span>
+
 				<SignUp cardID={props.cardID} />
 			</div>
 		</div>

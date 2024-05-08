@@ -24,8 +24,17 @@ export default function Display(props: { user: Tables<"user"> }) {
 					["%12", "of the team's scores has been contributed!"],
 				].map(([t1, t2]) => (
 					<>
-						<div style={{ display: "flex", gap: "1em" }}>
-							<span style={{ fontWeight: 1000, color: "#009FE3", fontSize: "1em", width: "3em", textAlign: "right" }}>
+						<div style={{ display: "flex", gap: "7px" }}>
+							<span
+								style={{
+									fontWeight: 1000,
+									color: "#009FE3",
+									fontSize: "1em",
+									width: "3em",
+									textAlign: "right",
+									verticalAlign: "center",
+								}}
+							>
 								{t1}
 							</span>
 							<span style={{ fontSize: "0.8em", textAlign: "left", alignContent: "center", width: "11.5em" }}>

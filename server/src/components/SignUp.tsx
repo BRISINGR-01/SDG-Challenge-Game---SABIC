@@ -19,24 +19,31 @@ export default function SignUp(props: { cardID: string }) {
 
 	return (
 		<form
-			className="flex flex-col justify-between items-center"
+			className="flex flex-col justify-center items-center"
 			style={{ height: "100%" }}
 			onSubmit={(e) => onSubmit.current(e, input)}
 		>
-			<span style={{ fontSize: "1.5em" }}>TYPE</span>
-			<Input
-				variant="bordered"
-				size="sm"
-				color="primary"
-				style={{ width: "max-content" }}
-				placeholder="Enter Name"
-				label="name"
-				onValueChange={setInput}
-				value={input}
-			/>
-			<Button type="submit" color="primary" style={{ width: "min-content" }} isDisabled={input.length === 0} size="sm">
-				Create account
-			</Button>
+			<div className="flex gap-2 flex-col items-center">
+				<Input
+					variant="bordered"
+					size="sm"
+					color="primary"
+					style={{ width: "max-content" }}
+					placeholder="Enter Name"
+					label="name"
+					onValueChange={setInput}
+					value={input}
+				/>
+				<Button
+					type="submit"
+					color="primary"
+					style={{ width: "min-content" }}
+					isDisabled={input.length === 0}
+					size="sm"
+				>
+					Create account
+				</Button>
+			</div>
 		</form>
 	);
 }
