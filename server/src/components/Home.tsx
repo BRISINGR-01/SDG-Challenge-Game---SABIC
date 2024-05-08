@@ -16,6 +16,11 @@ export default function Home(props: { showSignUp: boolean }) {
 		setUserData(null);
 		setCardToSignUp(null);
 	};
+	const [cardId, setCardId] = useState("");
+
+	useEffect(() => {
+		setCardId(window.location.href.split("/").at(-1) || "");
+	});
 
 	useEffect(() => {
 		const supabase = createClient();
@@ -58,7 +63,7 @@ export default function Home(props: { showSignUp: boolean }) {
 			<Container goBack={cardToSignUp || userData ? goBack : null}>
 				{props.showSignUp ? (
 					<div style={{ padding: "4em" }}>
-						<SignUp cardID={window.location.href.split("/").at(-1)!} />
+						<SignUp cardID={cardId} />
 					</div>
 				) : cardToSignUp ? (
 					<SignUpDisplay cardID={cardToSignUp} />
