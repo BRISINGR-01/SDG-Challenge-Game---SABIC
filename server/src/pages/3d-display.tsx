@@ -19,7 +19,7 @@ export default function Home() {
 				}
 			}}
 		>
-			<Scene3D />
+			<Scene3D hidden={false} />
 		</div>
 	);
 }

@@ -14,9 +14,13 @@ export default function Scene3D(props: { hidden: boolean; hide?: () => void }) {
 	scene.background = new Color("lightblue");
 
 	useEffect(() => {
-		setTimeout(() => {
-			setState("hide");
-		}, 100);
+		if (!props.hidden) {
+			setState("show");
+		} else {
+			setTimeout(() => {
+				setState("hide");
+			}, 100);
+		}
 	}, []);
 
 	useEffect(() => {
