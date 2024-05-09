@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Box3, Mesh, MeshPhongMaterial, Vector3 } from "three";
 import font from "three/examples/fonts/helvetiker_regular.typeface.json";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { FontLoader, type FontData } from "three/examples/jsm/loaders/FontLoader";
 
 export default function Text(props: { text: string; size: number; y: number }) {
 	const mesh = useRef<Mesh>(null!);
@@ -11,7 +11,7 @@ export default function Text(props: { text: string; size: number; y: number }) {
 		const loader = new FontLoader();
 
 		const geometry = new TextGeometry(props.text, {
-			font: loader.parse(font),
+			font: loader.parse(font as unknown as FontData),
 			size: props.size / 2,
 			height: 0.02,
 			depth: 0.001,
