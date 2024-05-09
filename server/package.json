@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.1",
+    "@react-three/drei": "^9.105.6",
+    "@react-three/fiber": "^8.16.5",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@types/express": "^4.17.21",
@@ -15,16 +17,18 @@
     "framer-motion": "^11.1.1",
     "net": "^1.0.2",
     "next": "14.2.1",
-    "react-qrcode-logo": "^2.10.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-qrcode-logo": "^2.10.0",
     "socket.io": "^4.7.5",
-    "socket.io-client": "^4.7.5"
+    "socket.io-client": "^4.7.5",
+    "three": "^0.164.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.164.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
     "nodemon": "^3.1.0",
