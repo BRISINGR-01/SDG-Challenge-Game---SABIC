@@ -7,7 +7,7 @@ import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader";
 
 function SVGEntity(props: { path: string; depth: number }) {
 	const mesh = useRef<Mesh>(null!);
-	const svg = useLoader(SVGLoader, `http://localhost:3000/icons/${props.path}.svg`);
+	const svg = useLoader(SVGLoader, `${window.location.origin}/icons/${props.path}.svg`);
 
 	useEffect(() => {
 		for (const path of svg.paths) {
