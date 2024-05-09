@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Box3, Mesh, MeshPhongMaterial, Vector3 } from "three";
+import { Box3, Mesh, MeshPhongMaterial } from "three";
 import font from "three/examples/fonts/helvetiker_regular.typeface.json";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { FontLoader, type FontData } from "three/examples/jsm/loaders/FontLoader";
@@ -33,7 +33,6 @@ export default function Text(props: { text: string; size: number; y: number }) {
 
 		mesh.current.add(textMesh);
 		var box = new Box3().setFromObject(mesh.current);
-		const size = box.getSize(new Vector3());
 		mesh.current.position.x -= props.text.length / 20;
 		mesh.current.position.y -= props.y;
 	}, []);

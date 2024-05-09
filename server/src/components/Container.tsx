@@ -6,6 +6,7 @@ export default function Container(props: {
 	style?: React.CSSProperties;
 	className?: string;
 	goBack: null | (() => void);
+	show3D: null | (() => void);
 }) {
 	return (
 		<div
@@ -17,10 +18,10 @@ export default function Container(props: {
 				overflow: "hidden",
 			}}
 		>
-			{props.goBack && (
+			{(props.goBack || props.show3D) && (
 				<div style={{ position: "absolute", top: 0, right: 0, transform: "translate(-30%, 30%)", zIndex: 100 }}>
-					<Button size="md" variant="faded" isIconOnly onClick={props.goBack}>
-						<img style={{ padding: "8px" }} src="/back.svg"></img>
+					<Button size="md" variant="faded" isIconOnly onClick={props.goBack ?? props.show3D ?? (() => {})}>
+						<img style={{ padding: "8px" }} src={props.goBack ? "/icons/back.svg" : "/icons/3d.svg"}></img>
 					</Button>
 				</div>
 			)}

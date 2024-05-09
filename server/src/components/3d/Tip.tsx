@@ -21,8 +21,8 @@ function Tip(props: { path: string; position: Vector3; depth: number; title: str
 				descriptionContent.push(text[wordI] + " ");
 			}
 		}
-
 		setDescription(descriptionContent);
+
 		mesh.current.lookAt(new Vector3(0, 0, 0));
 	}, []);
 
