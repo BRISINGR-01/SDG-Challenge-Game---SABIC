@@ -11,7 +11,7 @@ The aim of the game is to get people to compete to recycle more. If an employee 
 The UI consists of two parts - leaderboard and account creation. They are connected with supabase's realtime connection with the server, which communicates with the hardware. The server processes the data from the card reader, then stores the data on a Supabase database and then the UI shows the new score to the user. For this, the hardware requires an RFID and an HTTP library. The server is hosted at [https://sdg-challenge-game-sabic.vercel.app/](https://sdg-challenge-game-sabic.vercel.app/) by Vercel.
 
 ##### Overview
-- Server - Typescript, Next JS, Next UI, React, Supabase, Vercel
+- Server & UI- Typescript, Next JS, ThreeJS, React, Supabase, Vercel
 - card reader - C++, Platform IO (IDE), MFRC522-spi-i2c-uart-async (RFID), ArduinoHttpClient
 
 ### Hardware
@@ -48,7 +48,7 @@ Het doel van het spel is om mensen te laten concurreren om meer te recyclen. Als
 De UI bestaat uit twee delen - leaderboard en accountcreatie. Ze zijn verbonden met een websocket naar de server, die met de hardware communiceert. De server verwerkt de gegevens van de kaartlezer, en de gegevens vervolgens op een Supabase database en daarna laat de UI de nieuwe score aan de gebruiker zien. Hiervoor heeft de hardware een RFID en een http library nodig. De server wordt gehost op [https://sdg-challenge-game-sabic.vercel.app/](https://sdg-challenge-game-sabic.vercel.app/) door Vercel.
 
 ##### Overzicht
-- Server - Typescript, Next JS, Next UI, React, Supabase, Vercel
+- Server & UI- Typescript, Next JS, ThreeJS, React, Supabase, Vercel
 - kaart lezer - C++, Platform IO (IDE), MFRC522-spi-i2c-uart-async (RFID), ArduinoHttpClient
 
 ### Hardware
