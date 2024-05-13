@@ -1,6 +1,6 @@
 # EN
 ### Appendix
-RFID - Radio Frequency IDentification. A piece of hardware that can distinguish cards.
+RFID - Radio Frequency IDentification. A piece of hardware that can distinguish cards.  
 ESP32 - This piece of hardware that is used to connect to the internet.
 Jumpwires - cables that connect different hardware.
 
@@ -8,7 +8,7 @@ Jumpwires - cables that connect different hardware.
 The aim of the game is to get people to compete to recycle more. If an employee recycles plastic, they can scan their badge and earn points. They can then see on a website which of their employees has the most points.
 
 ### Software
-The UI consists of two parts - leaderboard and account creation. They are connected with supabase's realtime connection with the server, which communicates with the hardware. The server processes the data from the card reader, then stores the data on a Supabase database and then the UI shows the new score to the user. For this, the hardware requires an RFID and an HTTP library. The server is hosted at [https://sdg-challenge-game-sabic.vercel.app/](https://sdg-challenge-game-sabic.vercel.app/) by Vercel.
+The UI consists of three parts - leaderboard, account creation and 3d display. They are connected with supabase's realtime connection with the server, which communicates with the hardware. The server processes the data from the card reader, then stores the data on a Supabase database and then the UI shows the new score to the user. For this, the hardware requires an RFID and an HTTP library. The server is hosted at [https://sdg-challenge-game-sabic.vercel.app/](https://sdg-challenge-game-sabic.vercel.app/) by Vercel.
 
 ##### Overview
 - Server & UI- Typescript, Next JS, ThreeJS, React, Supabase, Vercel
@@ -40,7 +40,7 @@ Total - ~22€
 
 # NL
 ### Appendix
-RFID - Radio Frequency IDentification. Een hardwarestuk dat kaarten kan onderscheiden.
+RFID - Radio Frequency IDentification. Een hardwarestuk dat kaarten kan onderscheiden.  
 ESP32 - Deze hardwarestuk wordt gebruikt om met het internet te verbinden.
 Jumpwires - kabels die verschillende hardware's verbinden.
 
@@ -48,7 +48,7 @@ Jumpwires - kabels die verschillende hardware's verbinden.
 Het doel van het spel is om mensen te laten concurreren om meer te recyclen. Als een medewerker plastic recycled, kan hij zijn badge scannen en punten verdienen. Op een website kan hij dan zien wie van zijn medewerkers de meeste punten heeft.
 
 ### Software
-De UI bestaat uit twee delen - leaderboard en accountcreatie. Ze zijn verbonden met een websocket naar de server, die met de hardware communiceert. De server verwerkt de gegevens van de kaartlezer, en de gegevens vervolgens op een Supabase database en daarna laat de UI de nieuwe score aan de gebruiker zien. Hiervoor heeft de hardware een RFID en een http library nodig. De server wordt gehost op [https://sdg-challenge-game-sabic.vercel.app/](https://sdg-challenge-game-sabic.vercel.app/) door Vercel.
+De UI bestaat uit drie delen - leaderboard, accountcreatie en 3d. Ze zijn verbonden met een websocket naar de server, die met de hardware communiceert. De server verwerkt de gegevens van de kaartlezer, en de gegevens vervolgens op een Supabase database en daarna laat de UI de nieuwe score aan de gebruiker zien. Hiervoor heeft de hardware een RFID en een http library nodig. De server wordt gehost op [https://sdg-challenge-game-sabic.vercel.app/](https://sdg-challenge-game-sabic.vercel.app/) door Vercel.
 
 ##### Overzicht
 - Server & UI- Typescript, Next JS, ThreeJS, React, Supabase, Vercel
