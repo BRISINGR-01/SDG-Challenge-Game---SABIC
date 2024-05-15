@@ -3,10 +3,26 @@ import "../../app/globals.css";
 
 import { Button } from "@nextui-org/react";
 import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { useEffect, useState } from "react";
-import { Color, Scene, Vector3 } from "three";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { Color, Scene, TextureLoader, Vector3, type Mesh } from "three";
 import Tip from "./Tip";
+
+function Image() {
+	const mesh = useRef<Mesh>(null!);
+	const texture = useLoader(TextureLoader, `${window.location.origin}/display.png`);
+
+	useEffect(() => {
+		mesh.current.lookAt(new Vector3(0, 0, 0));
+	}, []);
+
+	return (
+		<mesh position={new Vector3(0, 3, -2)} ref={mesh}>
+			<boxGeometry args={[4, 2.5, 0.1]} />
+			<meshBasicMaterial attach="material" map={texture} />
+		</mesh>
+	);
+}
 
 export default function Scene3D(props: { hidden: boolean; hide?: () => void }) {
 	const [state, setState] = useState<"pre-render" | "show" | "hide">("pre-render");
@@ -47,6 +63,9 @@ export default function Scene3D(props: { hidden: boolean; hide?: () => void }) {
 				<OrbitControls />
 				<ambientLight />
 				<directionalLight />
+				<Suspense>
+					<Image />
+				</Suspense>
 				<Tip
 					path="solar"
 					position={new Vector3(-6, 1, 6)}
