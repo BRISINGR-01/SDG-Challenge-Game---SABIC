@@ -2,7 +2,7 @@ import { Button, Input } from "@nextui-org/react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { createClient } from "../utils/supabase/client";
 
-export default function SignUp(props: { cardID: string }) {
+export default function SignUp(props: { cardID?: string }) {
 	const [input, setInput] = useState("");
 	const onSubmit = useRef((e: FormEvent<HTMLFormElement>, name: string) => e.preventDefault());
 
@@ -12,7 +12,7 @@ export default function SignUp(props: { cardID: string }) {
 		onSubmit.current = async (e, name) => {
 			e.preventDefault();
 
-			await supabase.from("user").insert({ card: props.cardID, name });
+			await supabase.from("user").insert({ card: props.cardID || window.location.href.split("/").at(-1) || "", name });
 			setInput("");
 		};
 	}, []);

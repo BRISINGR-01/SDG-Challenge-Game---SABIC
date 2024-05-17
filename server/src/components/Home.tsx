@@ -21,10 +21,6 @@ export default function Home(props: { showSignUp: boolean }) {
 	const [cardId, setCardId] = useState("");
 
 	useEffect(() => {
-		setCardId(window.location.href.split("/").at(-1) || "");
-	});
-
-	useEffect(() => {
 		const supabase = createClient();
 
 		supabase
