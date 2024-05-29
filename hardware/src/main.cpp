@@ -14,17 +14,14 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 const char *wifiName = WIFI_NAME;
 const char *wifiPassword = WIFI_PASSWORD;
-const char *supabaseURL = SUPABASE_URL;
-String supabaseAPIToken = SUPABASE_API_TOKEN;
+const char *url = URL;
+String APIToken = API_TOKEN;
 
-String url = "https://$supabaseURL.supabase.co/rest/v1/card_read";
 WiFiClient wifi;
 HTTPClient client;
 
 void setup()
 {
-  url.replace("$supabaseURL", supabaseURL);
-
   Serial.begin(9600);
   SPI.begin();
 
@@ -104,8 +101,8 @@ void sendData(String cardId)
   client.begin(url);
 
   client.addHeader("Content-Type", "application/json");
-  client.addHeader("apikey", supabaseAPIToken);
-  client.addHeader("Authorization", "Bearer " + supabaseAPIToken);
+  client.addHeader("apikey", APIToken);
+  client.addHeader("Authorization", "Bearer " + APIToken);
 
   Serial.println(client.POST(postData));
   Serial.println(client.getString());
