@@ -27,7 +27,7 @@ void setup()
 
   mfrc522.PCD_Init();
 
-  WiFi.begin("Alex's Galaxy S21 FE 5G", "rbmj4667");
+  WiFi.begin(wifiName, wifiPassword);
   Serial.println("Connecting");
   while (WiFi.status() != WL_CONNECTED)
   {
